@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as bookActions from '../../actions/bookActions';
 
 class Book extends React.Component {
     constructor(props) {
@@ -6,7 +8,7 @@ class Book extends React.Component {
     }
 
     submitBook(input) {
-        alert("Book submitted");
+        this.props.createBook(input);
     }
 
     render() {
@@ -16,8 +18,8 @@ class Book extends React.Component {
             <div>
                 <h3>Books</h3>
                 <ul>
-                    {this.props.books.map(
-                        (b, i) => <li key={i}>{b.key}</li>
+                    {this.props.books.map(book =>
+                        <li>{book.title}</li>
                     )}
                 </ul>
                 <div>
@@ -25,17 +27,29 @@ class Book extends React.Component {
                     <form onSubmit={e => {
                         e.preventDefault();
 
-                        var input = { title: titleInput.value };
+                        let input = { title: titleInput.value };
                         this.submitBook(input);
                         e.target.reset();
                     }}>
                         <input type="text" name="title" ref={node => titleInput = node} />
                         <input type="submit" />
-                    </form>    
+                    </form>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default Book;
+const mapStateToProps = (state) => {
+    return {
+        books: state.books
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createBook: book => dispatch(bookActions.createBook(book))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Book);

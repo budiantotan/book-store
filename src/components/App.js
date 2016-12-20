@@ -21,7 +21,7 @@ const App = (props) => {
             </nav>
             {props.children}
         </div>
-    )
-}
+    );
+};
 
 export default App;
