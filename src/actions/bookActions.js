@@ -1,12 +1,13 @@
 import Axios from 'axios';
+import * as actionTypes from './actionTypes';
 
 // API url. this uses json-server mocking.
 const apiUrl = 'http://localhost:3001/books';
 
-// Get book
+// Fetch books
 export const fetchBooksSuccess = (books) => {
     return {
-        type: 'FETCH_BOOKS_SUCCESS',
+        type: actionTypes.FETCH_BOOKS_SUCCESS,
         books
     };
 };
@@ -26,7 +27,7 @@ export const fetchBooks = () => {
 // Create book
 export const createBookSuccess = (book) => {
     return {
-        type: 'CREATE_BOOK_SUCCESS',
+        type: actionTypes.CREATE_BOOK_SUCCESS,
         book
     };
 };
@@ -36,6 +37,26 @@ export const createBook = (book) => {
         return Axios.post(apiUrl, book)
             .then(response => {
                 dispatch(createBookSuccess(response.data));
+            })
+            .catch(error => {
+                throw (error);
+            });
+    };
+};
+
+// Fetch book by id
+export const fetchBookByIdSuccess = (book) => {
+    return {
+        type: actionTypes.FETCH_BOOK_BY_ID_SUCCESS,
+        book
+    };
+};
+
+export const fetchBookById = (bookId) => {
+    return (dispatch) => {
+        return Axios.get(apiUrl + '/' + bookId)
+            .then(response => {
+                dispatch(fetchBookByIdSuccess(response.data));
             })
             .catch(error => {
                 throw (error);
