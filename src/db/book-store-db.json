@@ -1,23 +1,39 @@
 {
   "books": [
     {
-      "id": 0,
-      "title": "Book 1"
-    },
-    {
-      "id": 1,
-      "title": "Book 2"
-    },
-    {
-      "id": 2,
-      "title": "Book 3"
-    },
-    {
-      "title": "Book 4",
-      "author": "Test",
-      "price": "1000",
+      "title": "Javascript for Dummies",
+      "author": "	Dummies",
+      "price": "20",
       "year": "2016",
+      "id": 0
+    },
+    {
+      "title": "ES6 for Dummies",
+      "author": "	Dummies",
+      "price": "21",
+      "year": "2016",
+      "id": 1
+    },
+    {
+      "title": "Node.js for Dummies",
+      "author": "	Dummies",
+      "price": "18",
+      "year": "2014",
+      "id": 2
+    },
+    {
+      "title": "Webpack for Dummies",
+      "author": "	Dummies",
+      "price": "20",
+      "year": "2015",
       "id": 3
+    },
+    {
+      "title": "React & Redux for Dummies",
+      "author": "	Dummies",
+      "price": "20",
+      "year": "2016",
+      "id": 4
     }
   ]
 }
