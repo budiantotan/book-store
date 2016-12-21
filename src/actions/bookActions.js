@@ -2,7 +2,8 @@ import Axios from 'axios';
 import * as actionTypes from './actionTypes';
 
 // API url. this uses json-server mocking.
-const apiUrl = 'http://localhost:3001/books';
+const bookApiUrl = 'http://localhost:3001/books';
+const cartApiUrl = 'http://localhost:3001/cart';
 
 // Fetch books
 export const fetchBooksSuccess = (books) => {
@@ -14,7 +15,7 @@ export const fetchBooksSuccess = (books) => {
 
 export const fetchBooks = () => {
     return (dispatch) => {
-        return Axios.get(apiUrl)
+        return Axios.get(bookApiUrl)
             .then(response => {
                 dispatch(fetchBooksSuccess(response.data));
             })
@@ -34,7 +35,7 @@ export const createBookSuccess = (book) => {
 
 export const createBook = (book) => {
     return (dispatch) => {
-        return Axios.post(apiUrl, book)
+        return Axios.post(bookApiUrl, book)
             .then(response => {
                 dispatch(createBookSuccess(response.data));
             })
@@ -54,7 +55,7 @@ export const fetchBookByIdSuccess = (book) => {
 
 export const fetchBookById = (bookId) => {
     return (dispatch) => {
-        return Axios.get(apiUrl + '/' + bookId)
+        return Axios.get(bookApiUrl + '/' + bookId)
             .then(response => {
                 dispatch(fetchBookByIdSuccess(response.data));
             })
